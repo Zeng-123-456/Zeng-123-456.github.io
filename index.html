@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超准性格测试 - 只给最亲密的朋友</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#EC4899',
+                        accent: '#F59E0B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .prank-shake {
+                animation: shake 0.5s;
+            }
+            .prank-fade-in {
+                animation: fadeIn 0.8s;
+            }
+            .question-card {
+                transition: all 0.3s ease;
+            }
+            .question-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- 顶部导航 -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-primary font-bold text-xl">性格测试</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gray-500 text-sm hidden md:inline-block">分享给朋友 →</span>
+                    <button class="ml-4 bg-primary text-white p-2 rounded-full shadow-sm hover:bg-primary/90 transition-colors">
+                        <i class="fa fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <!-- 开始页面 -->
+        <section id="start-screen" class="py-12 text-center">
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
+                <h1 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-4 text-shadow">超准性格测试</h1>
+                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                    这个测试只有真正亲密的朋友才能看到，据说准确率高达99.9%，快来看看你的真实性格吧！
+                </p>
+                <div class="flex justify-center mb-8">
+                    <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
+                        <i class="fa fa-user-circle-o text-5xl text-primary"></i>
+                    </div>
+                </div>
+                <button id="start-test" class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                    开始测试
+                </button>
+                <p class="text-gray-400 text-sm mt-4">只需3分钟，揭示真实的你</p>
+            </div>
+            
+            <div class="flex justify-center space-x-4 text-gray-500 text-sm">
+                <div class="flex items-center">
+                    <i class="fa fa-lock mr-1"></i> 隐私保护
+                </div>
+                <div class="flex items-center">
+                    <i class="fa fa-check-circle mr-1"></i> 免费测试
+                </div>
+                <div class="flex items-center">
+                    <i class="fa fa-users mr-1"></i> 已有100万人参与
+                </div>
+            </div>
+        </section>
+
+        <!-- 测试问题页面 -->
+        <section id="test-screen" class="py-12 hidden">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">性格测试 <span id="question-number">(1/5)</span></h2>
+                <div class="w-32 bg-gray-200 rounded-full h-2.5">
+                    <div id="progress-bar" class="bg-primary h-2.5 rounded-full" style="width: 20%"></div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
+                <h3 id="question-text" class="text-xl font-semibold text-gray-800 mb-6">
+                    当你朋友讲了一个不好笑的笑话，你会？
+                </h3>
+                
+                <div class="space-y-4" id="answers-container">
+                    <div class="question-card p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="answer" value="A" class="form-radio text-primary h-5 w-5">
+                            <span class="ml-3 text-gray-700">礼貌地笑一笑，不想让他尴尬</span>
+                        </label>
+                    </div>
+                    
+                    <div class="question-card p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="answer" value="B" class="form-radio text-primary h-5 w-5">
+                            <span class="ml-3 text-gray-700">直接告诉他这个笑话不好笑</span>
+                        </label>
+                    </div>
+                    
+                    <div class="question-card p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="answer" value="C" class="form-radio text-primary h-5 w-5">
+                            <span class="ml-3 text-gray-700">转移话题，假装没听到</span>
+                        </label>
+                    </div>
+                    
+                    <div class="question-card p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="answer" value="D" class="form-radio text-primary h-5 w-5">
+                            <span class="ml-3 text-gray-700">用更烂的笑话回敬他</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button id="next-question" class="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-6 rounded-full shadow transform transition hover:scale-105 focus:outline-none">
+                    下一题 <i class="fa fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 结果页面（恶作剧） -->
+        <section id="result-screen" class="py-12 hidden">
+            <div id="fake-result" class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">你的性格分析结果</h2>
+                
+                <div class="mb-8 text-center">
+                    <div class="inline-block p-1 bg-primary/10 rounded-full mb-4">
+                        <i class="fa fa-star text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-700">正在生成你的专属性格报告...</h3>
+                    <p class="text-gray-500 mt-2">请稍候，我们的AI正在深度分析你的答案</p>
+                    
+                    <div class="mt-6 w-full bg-gray-200 rounded-full h-3">
+                        <div id="result-progress" class="bg-primary h-3 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 恶作剧内容 -->
+            <div id="prank-content" class="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center hidden prank-fade-in">
+                <div class="text-center px-4">
+                    <img src="prank-image.jpg" alt="搞笑恶作剧图片" class="w-full max-w-md mx-auto rounded-lg mb-6 prank-shake">
+                    <h2 class="text-white text-3xl font-bold mb-4">哈哈！你被耍了！</h2>
+                    <p class="text-gray-300 text-lg mb-8">这根本不是什么性格测试，你太好骗了！</p>
+                    <button id="share-prank" class="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none mr-4">
+                        <i class="fa fa-share mr-2"></i> 整蛊下一个朋友
+                    </button>
+                    <button id="close-prank" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none">
+                        关闭 <i class="fa fa-times ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t border-gray-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 text-sm">
+                © 2023 性格测试网 | 仅供娱乐
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 问题数据
+        const questions = [
+            {
+                text: "当你朋友讲了一个不好笑的笑话，你会？",
+                answers: [
+                    "礼貌地笑一笑，不想让他尴尬",
+                    "直接告诉他这个笑话不好笑",
+                    "转移话题，假装没听到",
+                    "用更烂的笑话回敬他"
+                ]
+            },
+            {
+                text: "如果朋友借了你的东西忘记还，你会？",
+                answers: [
+                    "直接提醒他还回来",
+                    "算了，反正也不是很重要",
+                    "等他自己记起来",
+                    "借他另一个东西来暗示"
+                ]
+            },
+            {
+                text: "你更喜欢和朋友一起做什么活动？",
+                answers: [
+                    "一起打游戏",
+                    "出去逛街吃饭",
+                    "在家看电影聊天",
+                    "一起运动"
+                ]
+            },
+            {
+                text: "当朋友遇到困难时，你通常会？",
+                answers: [
+                    "主动提供帮助和建议",
+                    "听他倾诉但不发表意见",
+                    "鼓励他自己解决",
+                    "转移话题让他开心起来"
+                ]
+            },
+            {
+                text: "你认为朋友之间最重要的是什么？",
+                answers: [
+                    "诚实和信任",
+                    "共同的兴趣爱好",
+                    "互相帮助",
+                    "幽默感"
+                ]
+            },
+            {
+                text: "在聚会上，你通常是？",
+                answers: [
+                    "活跃气氛的主动者",
+                    "安静的观察者",
+                    "跟着大家的节奏走",
+                    "找几个熟人聊天"
+                ]
+            },
+            {
+                text: "你最不能容忍朋友的什么行为？",
+                answers: [
+                    "说谎欺骗",
+                    "背后说坏话",
+                    "经常放鸽子",
+                    "太以自我为中心"
+                ]
+            },
+            {
+                text: "如果朋友情绪不好，你会？",
+                answers: [
+                    "立刻去关心和陪伴",
+                    "给他一些空间，等他主动找你",
+                    "发个消息问问情况",
+                    "想办法让他开心起来"
+                ]
+            },
+            {
+                text: "你的朋友圈通常是？",
+                answers: [
+                    "人很多，各种类型的朋友都有",
+                    "不多但很精，都是知心好友",
+                    "主要是工作或学习上的朋友",
+                    "有几个特别亲近的，其他都是普通朋友"
+                ]
+            },
+            {
+                text: "如果你和朋友发生争吵，你会？",
+                answers: [
+                    "主动道歉，尽快和好",
+                    "冷静一下，等对方来找你",
+                    "分析原因，理性解决问题",
+                    "先给彼此一些时间冷静"
+                ]
+            }
+        ];
+
+        // DOM元素
+        const startScreen = document.getElementById('start-screen');
+        const testScreen = document.getElementById('test-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startTestBtn = document.getElementById('start-test');
+        const nextQuestionBtn = document.getElementById('next-question');
+        const questionText = document.getElementById('question-text');
+        const answersContainer = document.getElementById('answers-container');
+        const questionNumber = document.getElementById('question-number');
+        const progressBar = document.getElementById('progress-bar');
+        const resultProgress = document.getElementById('result-progress');
+        const prankContent = document.getElementById('prank-content');
+        const fakeResult = document.getElementById('fake-result');
+        const sharePrankBtn = document.getElementById('share-prank');
+        const closePrankBtn = document.getElementById('close-prank');
+        const navbar = document.getElementById('navbar');
+
+        // 当前问题索引
+        let currentQuestion = 0;
+
+        // 开始测试
+        startTestBtn.addEventListener('click', () => {
+            startScreen.classList.add('hidden');
+            testScreen.classList.remove('hidden');
+            loadQuestion(currentQuestion);
+        });
+
+        // 加载问题
+        function loadQuestion(index) {
+            if (index >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const question = questions[index];
+            questionText.textContent = question.text;
+            questionNumber.textContent = `(${index + 1}/${questions.length})`;
+            progressBar.style.width = `${((index + 1) / questions.length) * 100}%`;
+
+            // 清空并加载答案
+            answersContainer.innerHTML = '';
+            question.answers.forEach((answer, i) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'question-card p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary';
+                answerDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer w-full">
+                        <input type="radio" name="answer" value="${String.fromCharCode(65 + i)}" class="form-radio text-primary h-5 w-5">
+                        <span class="ml-3 text-gray-700">${answer}</span>
+                    </label>
+                `;
+                
+                // 添加点击事件，让整个区域都可以点击
+                answerDiv.addEventListener('click', () => {
+                    const radio = answerDiv.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    // 移除其他选项的选中样式
+                    document.querySelectorAll('.question-card').forEach(card => {
+                        card.classList.remove('border-primary', 'bg-primary/5');
+                    });
+                    // 添加当前选项的选中样式
+                    answerDiv.classList.add('border-primary', 'bg-primary/5');
+                });
+                
+                answersContainer.appendChild(answerDiv);
+            });
+        }
+
+        // 下一题
+        nextQuestionBtn.addEventListener('click', () => {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (!selectedAnswer) {
+                // 抖动效果提示必须选择答案
+                answersContainer.classList.add('prank-shake');
+                setTimeout(() => {
+                    answersContainer.classList.remove('prank-shake');
+                }, 500);
+                return;
+            }
+
+            currentQuestion++;
+            loadQuestion(currentQuestion);
+        });
+
+        // 显示结果（恶作剧）
+        function showResults() {
+            testScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            
+            // 模拟加载进度
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    
+                    // 显示恶作剧内容
+                    setTimeout(() => {
+                        // 播放音效（如果有）
+                        const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-laughing-people-1211.mp3');
+                        audio.volume = 0.5;
+                        audio.play().catch(e => console.log('音频播放失败:', e));
+                        
+                        prankContent.classList.remove('hidden');
+                        navbar.classList.add('hidden');
+                    }, 500);
+                }
+                resultProgress.style.width = `${progress}%`;
+            }, 300);
+        }
+
+        // 分享恶作剧
+        sharePrankBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: '超准性格测试',
+                    text: '我刚做了一个超准的性格测试，你也来试试吧！',
+                    url: window.location.href
+                }).catch(err => {
+                    console.log('分享失败:', err);
+                    alert('请复制链接分享给朋友');
+                });
+            } else {
+                alert('请复制链接分享给朋友');
+            }
+        });
+
+        // 关闭恶作剧
+        closePrankBtn.addEventListener('click', () => {
+            prankContent.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            resultScreen.classList.add('hidden');
+            navbar.classList.remove('hidden');
+            currentQuestion = 0;
+            resultProgress.style.width = '0%';
+        });
+
+        // 滚动时改变导航栏样式
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow');
+            } else {
+                navbar.classList.remove('shadow');
+            }
+        });
+    </script>
+</body>
+</html>
