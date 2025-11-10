@@ -231,7 +231,7 @@ function spawnTip() {
   }, 4000);
 }
 
-setInterval(spawnTip, 300);
+setInterval(() => { spawnTip(); spawnTip(); }, 150);
 
     // Android JS Bridge 示例
     // 检查是否存在原生提供的 android 对象
