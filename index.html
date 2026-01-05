@@ -1,210 +1,995 @@
 <!DOCTYPE html>
-<!-- saved from url=(0197)file:///C:/Users/%E6%9A%B4%E5%AF%8C/Desktop/%E5%9C%A3%E8%AF%9E%E6%A0%91/%E8%93%9D%E8%89%B2%E5%9C%A3%E8%AF%9E%E6%A0%91573%E4%BB%A3%E7%A0%81/%E5%9C%A3%E8%AF%9E%E5%BF%AB%E4%B9%90.html#pt_1703302119239 -->
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>圣诞快乐</title>
-
-    <link rel="stylesheet" type="text/css" href="./圣诞快乐_files/normalize.css">
-    <link rel="stylesheet" type="text/css" href="./圣诞快乐_files/default.css">
-    <link href="./圣诞快乐_files/main.css" rel="stylesheet">
-
-    <style type="text/css">
-        .typed-cursor {
-            opacity: 1;
-            font-weight: 100;
-            -webkit-animation: blink 0.7s infinite;
-            -moz-animation: blink 0.7s infinite;
-            -ms-animation: blink 0.7s infinite;
-            -o-animation: blink 0.7s infinite;
-            animation: blink 0.7s infinite;
-        }
-        @-keyframes blink {
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        @-webkit-keyframes blink {
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        @-moz-keyframes blink {
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        @-ms-keyframes blink {
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        @-o-keyframes blink {
-            0% { opacity:1; }
-            50% { opacity:0; }
-            100% { opacity:1; }
-        }
-        .typed-fade-out {
-            opacity: 0;
-            animation: 0;
-            transition: opacity .25s;
-        }
-    </style>
-
+    <title>仓库管理系统</title>
     <style>
-        @font-face {
-            font-family: uc-nexus-iconfont;
-            src: url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),
-                 url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #34495e;
+            font-size: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            background: #34495e;
+            color: #3498db;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-header {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .page-header h1 {
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        .btn-group {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #229954;
+        }
+
+        .btn.active {
+            background: #2980b9;
+        }
+
+        .content-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #f8f9fa;
+        }
+
+        .tab.active {
+            border-bottom-color: #3498db;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 500px;
+            max-width: 90%;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: #2c3e50;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .input-readonly {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-buttons .btn {
+            padding: 6px 12px;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .scan-input {
+            font-size: 18px;
+            padding: 12px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .scan-input:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+
+        .inventory-input {
+            width: 80px;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .diff-positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .diff-negative {
+            color: #e74c3c;
+            font-weight: bold;
         }
     </style>
-
-    <script>
-        var shouci = true;
-        console.log(shouci);
-
-        function bodyPlayMusic() {
-            if (shouci) {
-                shouci = false;
-                audio.play();
-                console.log(shouci);
-            }
-        }
-    </script>
-
-    <script src="./圣诞快乐_files/monitors.3.6.36.cn.js.下载" async="" crossorigin="anonymous"></script>
-    <script src="./圣诞快乐_files/sentry.3.6.36.cn.js.下载" async="" crossorigin="anonymous"></script>
 </head>
+<body>
+    <div class="sidebar">
+        <h2>仓库管理系统</h2>
+        <a class="menu-item active" data-page="inbound">入库管理</a>
+        <a class="menu-item" data-page="outbound">出库管理</a>
+        <a class="menu-item" data-page="inventory">库存盘点</a>
+    </div>
 
-<body onclick="bodyPlayMusic()" style="">
-
-    <img id="music_ico" onclick="clickMusic()" alt="" style="display: inline; float: right;">
-    <audio id="audio" src="https://sf6-cdn-tos.douyinstatic.com/obj/ies-music/6905357668872063752.mp3" preload="auto" loop="loop"></audio>
-
-    <div id="divSnow-1" class="htmleaf-content canvas-1"
-         style="position:absolute; width:100%; height:100%; z-index:-1; background:#000000;">
-
-        <img style="position:absolute; width:100%; top: 90px;"
-             src="./圣诞快乐_files/b3cacbc2fe294f42b13a0cf1b5c60443~noop.image">
-
-        <div class="type-wrap"
-             style="padding: 10px 35px 0px 0px; position:absolute; top:0px; left:35px; z-index:500; color:#ffffff; font-size:14px;">
-
-            <div id="typed-strings" style="display:none; text-align:center;">
-                <p></p>
-                <p><br><br>圣诞老爷爷🎅<br>昨天偷偷告诉我 <br>你就是我的礼物🎊<br>🔔 🍎 🎊 ℳᴇʀʀᎽ🎅 ྀིℂʜʀɪsᴛᴍᴀs🎄🍬</p>
+    <div class="main-content">
+        <div id="inbound" class="page active">
+            <div class="page-header">
+                <h1>入库管理</h1>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary active" onclick="showInboundTab('purchase')">采购订单入库</button>
+                <button class="btn btn-primary" onclick="showInboundTab('sample')">样品入库</button>
             </div>
 
-            <span id="typed" style="white-space:pre;">
-                <br><br>圣诞老爷爷🎅<br>昨天偷偷告诉我 <br>你就是我的礼物🎊<br>🔔 🍎 🎊 ℳᴇʀʀᎽ🎅 ྀིℂʜʀɪsᴛᴍᴀs🎄🍬
-            </span>
-            <span class="typed-cursor">|</span>
-            <span class="typed-cursor">|</span>
+            <div id="purchase-inbound" class="content-box">
+                <div class="form-group">
+                    <label>扫描二维码</label>
+                    <input type="text" class="scan-input" id="purchaseScanInput" placeholder="请扫描料盘二维码" onkeypress="handlePurchaseScan(event)">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>物料名称</th>
+                            <th>规格型号</th>
+                            <th>数量</th>
+                            <th>品牌</th>
+                            <th>日期</th>
+                            <th>采购单号</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchaseTableBody">
+                    </tbody>
+                </table>
+            </div>
 
+            <div id="sample-inbound" class="content-box" style="display: none;">
+                <div class="form-group">
+                    <label>物料名称</label>
+                    <input type="text" id="sampleName" placeholder="请输入物料名称">
+                </div>
+                <div class="form-group">
+                    <label>规格型号</label>
+                    <input type="text" id="sampleSpec" placeholder="请输入规格型号">
+                </div>
+                <div class="form-group">
+                    <label>数量</label>
+                    <input type="number" id="sampleQty" placeholder="请输入数量">
+                </div>
+                <div class="form-group">
+                    <label>品牌</label>
+                    <input type="text" id="sampleBrand" placeholder="请输入品牌">
+                </div>
+                <div class="form-group">
+                    <label>日期</label>
+                    <input type="date" id="sampleDate">
+                </div>
+                <div class="form-group">
+                    <label>采购单号</label>
+                    <input type="text" id="sampleOrderNo" placeholder="请输入采购单号">
+                </div>
+                <div class="form-group">
+                    <label>其他</label>
+                    <textarea id="sampleOther" placeholder="请输入其他信息"></textarea>
+                </div>
+                <button class="btn btn-success" onclick="addSampleInbound()">确认入库</button>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>物料名称</th>
+                            <th>规格型号</th>
+                            <th>数量</th>
+                            <th>品牌</th>
+                            <th>日期</th>
+                            <th>采购单号</th>
+                            <th>其他</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sampleTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="outbound" class="page">
+            <div class="page-header">
+                <h1>出库管理</h1>
+            </div>
+            <div class="tabs">
+                <div class="tab active" onclick="showOutboundTab('bom')">BOM 单出库</div>
+                <div class="tab" onclick="showOutboundTab('overdraw')">超领单出库</div>
+                <div class="tab" onclick="showOutboundTab('transfer')">调拨单出库</div>
+            </div>
+
+            <div id="bom-outbound" class="tab-content active">
+                <div class="content-box">
+                    <div class="form-group">
+                        <label>上传BOM单</label>
+                        <input type="file" id="bomFile" accept=".xlsx,.xls,.csv" onchange="handleBomUpload(event)">
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>工单号</th>
+                                <th>订单数量</th>
+                                <th>物料编码</th>
+                                <th>物料名称</th>
+                                <th>规格型号</th>
+                                <th>总用量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bomTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="overdraw-outbound" class="tab-content">
+                <div class="content-box">
+                    <div class="form-group">
+                        <label>超领单号</label>
+                        <input type="text" id="overdrawNo" placeholder="请输入超领单号">
+                    </div>
+                    <div class="form-group">
+                        <label>数量</label>
+                        <input type="number" id="overdrawQty" placeholder="请输入数量">
+                    </div>
+                    <div class="form-group">
+                        <label>部门</label>
+                        <input type="text" id="overdrawDept" placeholder="请输入部门">
+                    </div>
+                    <div class="form-group">
+                        <label>备注</label>
+                        <textarea id="overdrawRemark" placeholder="请输入备注"></textarea>
+                    </div>
+                    <button class="btn btn-success" onclick="addOverdrawOutbound()">确认出库</button>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>超领单号</th>
+                                <th>数量</th>
+                                <th>部门</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="overdrawTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="transfer-outbound" class="tab-content">
+                <div class="content-box">
+                    <div class="form-group">
+                        <label>调拨单号</label>
+                        <input type="text" id="transferNo" placeholder="请输入调拨单号">
+                    </div>
+                    <div class="form-group">
+                        <label>数量</label>
+                        <input type="number" id="transferQty" placeholder="请输入数量">
+                    </div>
+                    <div class="form-group">
+                        <label>调拨对象</label>
+                        <input type="text" id="transferTarget" placeholder="请输入调拨对象">
+                    </div>
+                    <div class="form-group">
+                        <label>调入公司名称</label>
+                        <input type="text" id="transferCompany" placeholder="请输入调入公司名称">
+                    </div>
+                    <div class="form-group">
+                        <label>备注</label>
+                        <textarea id="transferRemark" placeholder="请输入备注"></textarea>
+                    </div>
+                    <button class="btn btn-success" onclick="addTransferOutbound()">确认出库</button>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>调拨单号</th>
+                                <th>数量</th>
+                                <th>调拨对象</th>
+                                <th>调入公司名称</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transferTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="inventory" class="page">
+            <div class="page-header">
+                <h1>库存盘点</h1>
+            </div>
+            <div class="content-box">
+                <div class="btn-group">
+                    <button class="btn btn-success" onclick="exportInventory()">导出库存</button>
+                    <button class="btn btn-primary" onclick="saveInventoryCheck()">保存盘点结果</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>物料名称</th>
+                            <th>规格型号</th>
+                            <th>系统库存</th>
+                            <th>实际盘点</th>
+                            <th>差异</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <script type="text/javascript" defer="" async="" src="./圣诞快乐_files/uaest.js.下载"></script>
-    <script src="./圣诞快乐_files/typed.js.下载" type="text/javascript"></script>
+    <script>
+        let inventoryData = [];
+        let purchaseInboundData = [];
+        let sampleInboundData = [];
+        let bomOutboundData = [];
+        let overdrawOutboundData = [];
+        let transferOutboundData = [];
 
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            Typed.new("#typed", {
-                stringsElement: document.getElementById('typed-strings'),
-                typeSpeed: 110,
-                backDelay: 1000,
-                loop: false,
-                contentType: 'html',
-                loopCount: null,
-                callback: function () { foo(); },
-                resetCallback: function () { newTyped(); }
+        document.addEventListener('DOMContentLoaded', function() {
+            initMenu();
+            initSampleDate();
+            loadMockData();
+            renderPurchaseTable();
+            renderSampleTable();
+            renderBomTable();
+            renderOverdrawTable();
+            renderTransferTable();
+            renderInventoryTable();
+        });
+
+        function initMenu() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const pages = document.querySelectorAll('.page');
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    pages.forEach(p => p.classList.remove('active'));
+
+                    this.classList.add('active');
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(pageId).classList.add('active');
+                });
             });
+        }
 
-            var resetElement = document.querySelector('.reset');
-            if (resetElement) {
-                resetElement.addEventListener('click', function () {
-                    document.getElementById('typed')._typed.reset();
+        function initSampleDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('sampleDate').value = today;
+        }
+
+        function loadMockData() {
+            inventoryData = [
+                { id: 1, name: '电阻器', spec: '10K 1/4W', qty: 5000 },
+                { id: 2, name: '电容器', spec: '100uF 16V', qty: 3000 },
+                { id: 3, name: '二极管', spec: '1N4148', qty: 2000 },
+                { id: 4, name: '三极管', spec: '2N3904', qty: 1500 },
+                { id: 5, name: '集成电路', spec: 'LM358', qty: 800 },
+                { id: 6, name: '连接器', spec: 'XH2.54-2P', qty: 4000 },
+                { id: 7, name: '开关', spec: 'TS-1102', qty: 1200 },
+                { id: 8, name: 'LED灯', spec: '3mm 红色', qty: 6000 }
+            ];
+
+            purchaseInboundData = [
+                { id: 1, name: '电阻器', spec: '10K 1/4W', qty: 1000, brand: 'Yageo', date: '2026-01-03', orderNo: 'PO202601001' },
+                { id: 2, name: '电容器', spec: '100uF 16V', qty: 500, brand: 'Nichicon', date: '2026-01-04', orderNo: 'PO202601002' }
+            ];
+
+            sampleInboundData = [
+                { id: 1, name: '测试芯片', spec: 'TEST-001', qty: 10, brand: 'Sample', date: '2026-01-02', orderNo: 'SAMPLE001', other: '样品测试用' }
+            ];
+
+            bomOutboundData = [
+                { id: 1, orderNo: 'WO202601001', orderQty: 100, code: 'R001', name: '电阻器', spec: '10K 1/4W', totalQty: 100 },
+                { id: 2, orderNo: 'WO202601001', orderQty: 100, code: 'C001', name: '电容器', spec: '100uF 16V', totalQty: 50 }
+            ];
+
+            overdrawOutboundData = [
+                { id: 1, no: 'OD202601001', qty: 50, dept: '生产部', remark: '紧急补料' }
+            ];
+
+            transferOutboundData = [
+                { id: 1, no: 'TF202601001', qty: 200, target: '张三', company: '深圳分公司', remark: '调拨' }
+            ];
+        }
+
+        function showInboundTab(type) {
+            const buttons = document.querySelectorAll('#inbound .btn-group .btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            if (type === 'purchase') {
+                buttons[0].classList.add('active');
+                document.getElementById('purchase-inbound').style.display = 'block';
+                document.getElementById('sample-inbound').style.display = 'none';
+            } else {
+                buttons[1].classList.add('active');
+                document.getElementById('purchase-inbound').style.display = 'none';
+                document.getElementById('sample-inbound').style.display = 'block';
+            }
+        }
+
+        function showOutboundTab(type) {
+            const tabs = document.querySelectorAll('#outbound .tab');
+            const contents = document.querySelectorAll('#outbound .tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            if (type === 'bom') {
+                tabs[0].classList.add('active');
+                document.getElementById('bom-outbound').classList.add('active');
+            } else if (type === 'overdraw') {
+                tabs[1].classList.add('active');
+                document.getElementById('overdraw-outbound').classList.add('active');
+            } else if (type === 'transfer') {
+                tabs[2].classList.add('active');
+                document.getElementById('transfer-outbound').classList.add('active');
+            }
+        }
+
+        function handlePurchaseScan(event) {
+            if (event.key === 'Enter') {
+                const scanValue = document.getElementById('purchaseScanInput').value;
+                if (scanValue) {
+                    const mockData = {
+                        id: Date.now(),
+                        name: '扫描物料',
+                        spec: 'SPEC-' + scanValue.substring(0, 6),
+                        qty: Math.floor(Math.random() * 500) + 100,
+                        brand: 'Scanned Brand',
+                        date: new Date().toISOString().split('T')[0],
+                        orderNo: 'PO' + Date.now()
+                    };
+
+                    purchaseInboundData.push(mockData);
+                    renderPurchaseTable();
+                    updateInventory(mockData.name, mockData.spec, mockData.qty);
+
+                    document.getElementById('purchaseScanInput').value = '';
+                    alert('扫描成功！');
+                }
+            }
+        }
+
+        function addSampleInbound() {
+            const name = document.getElementById('sampleName').value;
+            const spec = document.getElementById('sampleSpec').value;
+            const qty = parseInt(document.getElementById('sampleQty').value);
+            const brand = document.getElementById('sampleBrand').value;
+            const date = document.getElementById('sampleDate').value;
+            const orderNo = document.getElementById('sampleOrderNo').value;
+            const other = document.getElementById('sampleOther').value;
+
+            if (!name || !spec || !qty || !date) {
+                alert('请填写必填项！');
+                return;
+            }
+
+            const data = {
+                id: Date.now(),
+                name,
+                spec,
+                qty,
+                brand,
+                date,
+                orderNo,
+                other
+            };
+
+            sampleInboundData.push(data);
+            renderSampleTable();
+            updateInventory(name, spec, qty);
+
+            clearSampleForm();
+            alert('样品入库成功！');
+        }
+
+        function clearSampleForm() {
+            document.getElementById('sampleName').value = '';
+            document.getElementById('sampleSpec').value = '';
+            document.getElementById('sampleQty').value = '';
+            document.getElementById('sampleBrand').value = '';
+            document.getElementById('sampleOrderNo').value = '';
+            document.getElementById('sampleOther').value = '';
+        }
+
+        function updateInventory(name, spec, qty) {
+            const existing = inventoryData.find(item => item.name === name && item.spec === spec);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                inventoryData.push({
+                    id: Date.now(),
+                    name,
+                    spec,
+                    qty
                 });
             }
-        });
-
-        function newTyped() {}
-        function foo() { console.log("Callback"); }
-    </script>
-
-    <script src="./圣诞快乐_files/jquery.min.js.下载" type="text/javascript"></script>
-    <script>window.jQuery || document.write('<script src="static/js/jquery-1.11.0.min.js"><\/script>')</script>
-    <script type="text/javascript" src="./圣诞快乐_files/websnowjq.js.下载"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            $("#divSnow-1").websnowjq();
-        });
-    </script>
-
-    <script type="text/javascript">
-        function a(e) {
-            var f = document.createElement('iframe');
-            f.style.display = 'none';
-            document.body.appendChild(f).src =
-                'javascript:"<script>top.location.replace(\'' + e + '\')<\/script>"';
+            renderInventoryTable();
         }
 
-        function jump1() {
-            if (!localStorage.is_fx) {
-                localStorage.is_fx = Date.now();
+        function handleBomUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const mockData = {
+                    id: Date.now(),
+                    orderNo: 'WO' + Date.now(),
+                    orderQty: Math.floor(Math.random() * 500) + 100,
+                    code: 'CODE' + Math.floor(Math.random() * 1000),
+                    name: 'BOM物料',
+                    spec: 'BOM-SPEC-' + Math.floor(Math.random() * 100),
+                    totalQty: Math.floor(Math.random() * 100) + 10
+                };
+
+                bomOutboundData.push(mockData);
+                renderBomTable();
+                alert('BOM单上传成功！');
             }
         }
 
-        function jump2() {
-            gotoData = {
-                "hb": "http://1.1022reba.top/c/3",
-                "hb1": "http://1.1022reba.top/c/3"
+        function addOverdrawOutbound() {
+            const no = document.getElementById('overdrawNo').value;
+            const qty = parseInt(document.getElementById('overdrawQty').value);
+            const dept = document.getElementById('overdrawDept').value;
+            const remark = document.getElementById('overdrawRemark').value;
+
+            if (!no || !qty || !dept) {
+                alert('请填写必填项！');
+                return;
+            }
+
+            const data = {
+                id: Date.now(),
+                no,
+                qty,
+                dept,
+                remark
             };
-            if (gotoData[window.location.pathname] != undefined) {
+
+            overdrawOutboundData.push(data);
+            renderOverdrawTable();
+
+            clearOverdrawForm();
+            alert('超领单出库成功！');
+        }
+
+        function clearOverdrawForm() {
+            document.getElementById('overdrawNo').value = '';
+            document.getElementById('overdrawQty').value = '';
+            document.getElementById('overdrawDept').value = '';
+            document.getElementById('overdrawRemark').value = '';
+        }
+
+        function addTransferOutbound() {
+            const no = document.getElementById('transferNo').value;
+            const qty = parseInt(document.getElementById('transferQty').value);
+            const target = document.getElementById('transferTarget').value;
+            const company = document.getElementById('transferCompany').value;
+            const remark = document.getElementById('transferRemark').value;
+
+            if (!no || !qty || !target || !company) {
+                alert('请填写必填项！');
+                return;
+            }
+
+            const data = {
+                id: Date.now(),
+                no,
+                qty,
+                target,
+                company,
+                remark
+            };
+
+            transferOutboundData.push(data);
+            renderTransferTable();
+
+            clearTransferForm();
+            alert('调拨单出库成功！');
+        }
+
+        function clearTransferForm() {
+            document.getElementById('transferNo').value = '';
+            document.getElementById('transferQty').value = '';
+            document.getElementById('transferTarget').value = '';
+            document.getElementById('transferCompany').value = '';
+            document.getElementById('transferRemark').value = '';
+        }
+
+        function renderPurchaseTable() {
+            const tbody = document.getElementById('purchaseTableBody');
+            tbody.innerHTML = purchaseInboundData.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.spec}</td>
+                    <td>${item.qty}</td>
+                    <td>${item.brand}</td>
+                    <td>${item.date}</td>
+                    <td>${item.orderNo}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="deletePurchaseItem(${item.id})">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderSampleTable() {
+            const tbody = document.getElementById('sampleTableBody');
+            tbody.innerHTML = sampleInboundData.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.spec}</td>
+                    <td>${item.qty}</td>
+                    <td>${item.brand}</td>
+                    <td>${item.date}</td>
+                    <td>${item.orderNo}</td>
+                    <td>${item.other || '-'}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="deleteSampleItem(${item.id})">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderBomTable() {
+            const tbody = document.getElementById('bomTableBody');
+            tbody.innerHTML = bomOutboundData.map(item => `
+                <tr>
+                    <td>${item.orderNo}</td>
+                    <td>${item.orderQty}</td>
+                    <td>${item.code}</td>
+                    <td>${item.name}</td>
+                    <td>${item.spec}</td>
+                    <td>${item.totalQty}</td>
+                    <td>
+                        <button class="btn btn-success" onclick="confirmBomOutbound(${item.id})">确认出库</button>
+                        <button class="btn btn-primary" onclick="deleteBomItem(${item.id})">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderOverdrawTable() {
+            const tbody = document.getElementById('overdrawTableBody');
+            tbody.innerHTML = overdrawOutboundData.map(item => `
+                <tr>
+                    <td>${item.no}</td>
+                    <td>${item.qty}</td>
+                    <td>${item.dept}</td>
+                    <td>${item.remark || '-'}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="deleteOverdrawItem(${item.id})">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderTransferTable() {
+            const tbody = document.getElementById('transferTableBody');
+            tbody.innerHTML = transferOutboundData.map(item => `
+                <tr>
+                    <td>${item.no}</td>
+                    <td>${item.qty}</td>
+                    <td>${item.target}</td>
+                    <td>${item.company}</td>
+                    <td>${item.remark || '-'}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="deleteTransferItem(${item.id})">删除</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderInventoryTable() {
+            const tbody = document.getElementById('inventoryTableBody');
+            tbody.innerHTML = inventoryData.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.spec}</td>
+                    <td>${item.qty}</td>
+                    <td>
+                        <input type="number" class="inventory-input" id="actual-${item.id}" value="${item.actualQty || item.qty}" onchange="calculateDiff(${item.id})">
+                    </td>
+                    <td id="diff-${item.id}">-</td>
+                </tr>
+            `).join('');
+        }
+
+        function calculateDiff(id) {
+            const item = inventoryData.find(i => i.id === id);
+            const actualQty = parseInt(document.getElementById(`actual-${id}`).value);
+            const diff = actualQty - item.qty;
+            const diffCell = document.getElementById(`diff-${id}`);
+
+            if (diff > 0) {
+                diffCell.innerHTML = `<span class="diff-positive">+${diff}</span>`;
+            } else if (diff < 0) {
+                diffCell.innerHTML = `<span class="diff-negative">${diff}</span>`;
             } else {
-                jump1();
+                diffCell.innerHTML = '0';
             }
         }
-    </script>
 
-    <script type="text/javascript">
-        window.onhashchange = function () { jp(); };
-
-        function hh() {
-            history.pushState(
-                history.length + 1, "app", "#pt_" + new Date().getTime()
-            );
+        function deletePurchaseItem(id) {
+            if (confirm('确定要删除这条记录吗？')) {
+                purchaseInboundData = purchaseInboundData.filter(item => item.id !== id);
+                renderPurchaseTable();
+            }
         }
 
-        function jp() {
-            var a = document.createElement('a');
-            a.setAttribute('rel', 'noreferrer');
-            a.setAttribute('href', "http://1.1022reba.top/c/3");
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+        function deleteSampleItem(id) {
+            if (confirm('确定要删除这条记录吗？')) {
+                sampleInboundData = sampleInboundData.filter(item => item.id !== id);
+                renderSampleTable();
+            }
         }
 
-        window.onload = function () {
-            setTimeout('hh();', 100);
-            setTimeout(
-                "var imgs = document.images;for (var t_i=0;t_i<imgs.length;t_i++) {if (imgs[t_i].attributes['d-s'] && imgs[t_i].attributes['d-s'].value) {imgs[t_i].src = imgs[t_i].attributes['d-s'].value;}}",
-                100
-            );
-        };
+        function deleteBomItem(id) {
+            if (confirm('确定要删除这条记录吗？')) {
+                bomOutboundData = bomOutboundData.filter(item => item.id !== id);
+                renderBomTable();
+            }
+        }
 
-        window.onpageshow = jump2;
+        function deleteOverdrawItem(id) {
+            if (confirm('确定要删除这条记录吗？')) {
+                overdrawOutboundData = overdrawOutboundData.filter(item => item.id !== id);
+                renderOverdrawTable();
+            }
+        }
+
+        function deleteTransferItem(id) {
+            if (confirm('确定要删除这条记录吗？')) {
+                transferOutboundData = transferOutboundData.filter(item => item.id !== id);
+                renderTransferTable();
+            }
+        }
+
+        function confirmBomOutbound(id) {
+            const item = bomOutboundData.find(i => i.id === id);
+            if (item) {
+                const inventoryItem = inventoryData.find(inv => inv.name === item.name && inv.spec === item.spec);
+                if (inventoryItem) {
+                    if (inventoryItem.qty >= item.totalQty) {
+                        inventoryItem.qty -= item.totalQty;
+                        renderInventoryTable();
+                        alert('出库成功！');
+                    } else {
+                        alert('库存不足！');
+                    }
+                } else {
+                    alert('库存中未找到该物料！');
+                }
+            }
+        }
+
+        function exportInventory() {
+            let csv = '物料名称,规格型号,库存数量\n';
+            inventoryData.forEach(item => {
+                csv += `${item.name},${item.spec},${item.qty}\n`;
+            });
+
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = '库存盘点_' + new Date().toISOString().split('T')[0] + '.csv';
+            link.click();
+        }
+
+        function saveInventoryCheck() {
+            inventoryData.forEach(item => {
+                const actualQty = parseInt(document.getElementById(`actual-${item.id}`).value);
+                item.actualQty = actualQty;
+            });
+            alert('盘点结果保存成功！');
+        }
     </script>
-
-    <canvas width="1691" height="858" id="websnowjqcandivSnow-1"
-            style="position:absolute; top:0px; left:0px;"></canvas>
-    <div id="__FEISHU_CLIPPER__"></div>
-    <canvas width="1857" height="918" id="websnowjqcandivSnow-1"
-            style="position:absolute; top:0px; left:0px;"></canvas>
-
 </body>
 </html>
