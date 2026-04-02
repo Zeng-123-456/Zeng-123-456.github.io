@@ -15,9 +15,9 @@
     --ok:#22c55e;
     --danger:#ef4444;
     --shadow:0 10px 30px rgba(0,0,0,.08);
-    --alpha: 1; /* 完全不透明 */
+    --alpha: 0; /* 完全透明 */
   }
-  *{box-sizing:border-box}
+  *{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
   html,body{width:100%;height:100%;margin:0;padding:0;background:radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,.12), transparent 60%),radial-gradient(900px 500px at 90% 20%, rgba(34,197,94,.10), transparent 60%),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;overflow:auto}
   button,input,textarea{font:inherit}
 
@@ -1063,6 +1063,31 @@
     state.selectedSat = startOfDay(d);
     state.cfg.lastSelected = toISODate(state.selectedSat);
     saveConfig(state.cfg);
+    // 基础防拷贝与调试保护
+    (function(){
+      // 禁用右键
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      
+      // 禁用快捷键 (F12, Ctrl+S, Ctrl+U, Ctrl+Shift+I, etc.)
+      document.addEventListener('keydown', e => {
+        if (
+          e.keyCode === 123 || // F12
+          (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
+          (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 115 || e.keyCode === 80)) // Ctrl+U/S/P
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      // 干扰调试器 (无限 debugger)
+      setInterval(() => {
+        (function() {
+          return false;
+        }["constructor"]("debugger")["call"]());
+      }, 50);
+    })();
+    initBarrage();
     buildCalendar();
     renderLists();
     // 手机端点击后自动弹出结果界面
